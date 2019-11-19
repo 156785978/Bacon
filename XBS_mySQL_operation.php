@@ -10,13 +10,15 @@
         $sql = "INSERT INTO Orders (ID,GetTime,
                                     FnsTime,user,
                                     status,price,items)
-                VALUES (?,?,?,?,?,?,?);";
+                VALUES ($ID,$GT,$FT,$user,$status,$price,$items);";
     
-        $stmt = mysqli_stmt_init($conn);
-        mysqli_stmt_prepare($stmt,$sql);
+
+        mysqli_query($conn, $sql);
+        //$stmt = mysqli_stmt_init($conn);
+        //mysqli_stmt_prepare($stmt,$sql);
     
-        mysqli_stmt_bind_param($stmt,"sssssis",$ID,$pw,$GT,$FT,$user,$status,$price,$items);
-        mysqli_stmt_execute($stmt);
+        //mysqli_stmt_bind_param($stmt,"sssssis",$ID,$pw,$GT,$FT,$user,$status,$price,$items);
+        //mysqli_stmt_execute($stmt);
     }
     //取得訂單資訊(老闆) push
     function getOrder(){

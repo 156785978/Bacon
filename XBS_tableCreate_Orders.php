@@ -4,8 +4,8 @@
     $sql = 'create table Orders(
 
             ID          varchar(15)     not NULL,
-            GetTime     TIMESTAMP NULL,
-            FnsTime     TIMESTAMP NULL,
+            GetTime     time,
+            FnsTime     time,
             user        varchar(15)     not NULL,
             status      varchar(15)     not NULL,
             price       integer(4)      not NULL,
