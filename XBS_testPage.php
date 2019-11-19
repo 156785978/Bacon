@@ -25,6 +25,8 @@
 <button type="submit" name = "submit">Sign up</button>
 </form>
 
+
+
 <?php
     include_once 'XBS_mySQL_operation.php';
 

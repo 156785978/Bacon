@@ -5,10 +5,20 @@
     
     /*訂單***********************************/
     //存入訂單(顧客)
-    function addOrder(){
-        
+    function addOrder($ID,$GT,$FT,$user,$status,$price,$items){
+        global $conn;
+        $sql = "INSERT INTO Orders (ID,GetTime,
+                                    FnsTime,user,
+                                    status,price,items)
+                VALUES (?,?,?,?,?,?,?);";
+    
+        $stmt = mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt,$sql);
+    
+        mysqli_stmt_bind_param($stmt,"sssssis",$ID,$pw,$GT,$FT,$user,$status,$price,$items);
+        mysqli_stmt_execute($stmt);
     }
-    //取得訂單資訊(老闆) pulling??
+    //取得訂單資訊(老闆) push
     function getOrder(){
         
     }
@@ -94,9 +104,24 @@
         }
         return $customerData;
     }
-    //搜尋顧客資料(老闆)(待做)
-    function searchCustomer(){
+    //搜尋顧客資料(老闆)
+    function searchCustomer($str){
+        global $conn;
 
+        $searchResult =array();
+        $sql = "select * 
+                from Account
+                where ID like '%".$str."%'
+                      or name like '%".$str."%';";
+        $result = mysqli_query($conn,$sql);
+        $resultCheck=mysqli_num_rows($result);
+
+        if($resultCheck>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $searchResult[]=$row;
+            }
+        }
+        return $searchResult;
     }
 
     
